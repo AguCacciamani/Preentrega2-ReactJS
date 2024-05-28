@@ -1,0 +1,13 @@
+.itemListContainerComponent {
+    color: #d41c1c;
+    font-size: 4rem;
+    margin: 0 auto;
+    padding: 20px 0;
+    text-shadow: 3px 1px 3px black;
+    text-align: center;
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

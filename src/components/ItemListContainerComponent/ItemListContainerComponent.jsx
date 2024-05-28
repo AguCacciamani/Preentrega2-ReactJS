@@ -1,24 +1,22 @@
-import { height } from '@fortawesome/free-brands-svg-icons/fa42Group'
-import React from 'react'
+import { height } from '@fortawesome/free-brands-svg-icons/fa42Group';
 
-const ItemListContainerComponent = ({greeting}) => {
-  const customStyles = {
-    color: "#d41c1c",
-    fontSize: "4rem",
-    margin: "0 auto",
-    padding: "20px 0",
-    textShadow: "3px 1px 3px black",
-    textAlign: "center",
-    width: "100vw",
-    height: "80vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-  }
+import React from 'react';
+
+import CountComponent from '../CountComponent/CountComponent';
+import "./ItemListContainerComponent.css";
+
+
+const ItemListContainerComponent = ({ greeting }) => {
   
-    return (
-    <div style={customStyles}>{greeting}</div>
-  )
-}
+
+  return (
+    <>
+      <CountComponent />
+      <div className='itemListContainerComponent'>
+        {greeting}
+      </div>
+    </>
+  );
+};
 
 export default ItemListContainerComponent

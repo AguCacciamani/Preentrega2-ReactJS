@@ -14,6 +14,7 @@
 body {
   margin: 0;
   background-image: linear-gradient(90deg, #181818, #767676);
+  color: white;
 }
 
 h1 {
