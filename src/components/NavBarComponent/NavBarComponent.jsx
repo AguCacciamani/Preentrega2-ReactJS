@@ -6,28 +6,30 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import CartWidgetComponent from '../CartWidgetComponent/CartWidgetComponent';
+import "./NavBarComponent.css";
+
 
 const NavBarComponent = () => {
-  const editStyle = {
-    color: "#fff",
-    fontSize: "1rem"
-  }
 
   return (
-    <Navbar expand="lg" style={{backgroundColor: "#131313"}} >
+    
+    <Navbar expand="lg" className='navbarStyle' sticky='top'>
       <Container>
-        <Navbar.Brand href="#home" style={{fontSize: "1.5rem", color: "#fff"}}>CALI-STORE</Navbar.Brand>
+        <Navbar.Brand href="#home">
+          {/* <img src="/Calis-technics-logo.png" width="80" height="80" alt='logo' className="d-inline-block align-center"/> */}
+            CALI-STORE
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">ELEMENTOS</Nav.Link>
-            <Nav.Link href="#link">SUPLEMENTOS</Nav.Link>
-            <NavDropdown title="INDUMENTARIA" id="basic-nav-dropdown" style={editStyle}>
-              <NavDropdown.Item href="#action/3.1" style={editStyle}>HOMBRES</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2" style={editStyle}>
+            <Nav.Link href="#home" className='hvr-underline-from-left'>ELEMENTOS</Nav.Link>
+            <Nav.Link href="#link" className='hvr-underline-from-left'>SUPLEMENTOS</Nav.Link>
+            <NavDropdown title="INDUMENTARIA" id="basic-nav-dropdown" className='categories hvr-underline-from-left'>
+              <NavDropdown.Item href="#action/3.1" className='categories'>HOMBRES</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2" className='categories'>
                 MUJERES
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3" style={editStyle}>ACCESORIOS</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3" className='categories'>ACCESORIOS</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

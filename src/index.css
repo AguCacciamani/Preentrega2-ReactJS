@@ -43,17 +43,18 @@ button:focus-visible {
 
 .navbar-nav {
   --bs-nav-link-color: #fff;
-  --bs-nav-link-hover-color: #a8a8a8;
+  --bs-nav-link-hover-color: none;
 }
 
 .navbar {
   --bs-navbar-active-color: #a8a8a8;
-  --bs-navbar-hover-color: #a8a8a8;
+  --bs-navbar-hover-color: none;
 }
 
 .dropdown-menu {
-  --bs-dropdown-bg: #131313;
+  --bs-dropdown-bg: #191919;
   --bs-dropdown-link-hover-bg: #6b6b6b;
+  --bs-body-color: #fff;
 }
 
 @media (prefers-color-scheme: light) {
