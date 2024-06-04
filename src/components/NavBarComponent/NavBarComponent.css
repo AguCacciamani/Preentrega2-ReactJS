@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@900&display=swap');
 
-.categories {
-    color: #fff;
-    font-size: 1rem;
-}
+
 .navbarStyle{
     background-color: #191919fa;
 }
@@ -18,12 +15,15 @@
 
 
 .hvr-underline-from-left {
-    display: inline-block;
-    vertical-align: middle;
+    color: #fff;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
     -webkit-transform: perspective(1px) translateZ(0);
     transform: perspective(1px) translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
     position: relative;
+    text-decoration: none;
   }
   .hvr-underline-from-left:before {
     content: "";

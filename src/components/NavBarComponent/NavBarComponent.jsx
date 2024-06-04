@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { Link } from 'react-router-dom';
+import { getMensShirts, getMensShoes, getSportAccessories, getWomensDresses, getWomensShoes } from '../../services/productsServices';
+
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -11,25 +14,54 @@ import "./NavBarComponent.css";
 
 const NavBarComponent = () => {
 
+  const [categories, setCategories] = React.useState([]);
+
+  React.useEffect(() => {
+  const fetchCategories = async () => {
+    try {
+      const [mensShirts, mensShoes, sportAccessories, womensDresses, womensShoes] = await Promise.all([
+        getMensShirts(),
+        getMensShoes(),
+        getSportAccessories(),
+        getWomensDresses(),
+        getWomensShoes(),
+      ]);
+
+      setCategories([
+        { name: 'Mens Shirts', data: mensShirts.data.products },
+        { name: 'Mens Shoes', data: mensShoes.data.products },
+        { name: 'Sport Accessories', data: sportAccessories.data.products },
+        { name: 'Womens Dresses', data: womensDresses.data.products },
+        { name: 'Womens Shoes', data: womensShoes.data.products },
+      ]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  fetchCategories();
+}, []);
   return (
     
     <Navbar expand="lg" className='navbarStyle' sticky='top'>
       <Container>
-        <Navbar.Brand href="#home">
+        <Link className='navbar-brand' to="/">
           {/* <img src="/Calis-technics-logo.png" width="80" height="80" alt='logo' className="d-inline-block align-center"/> */}
             CALI-STORE
-        </Navbar.Brand>
+        </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home" className='hvr-underline-from-left'>ELEMENTOS</Nav.Link>
-            <Nav.Link href="#link" className='hvr-underline-from-left'>SUPLEMENTOS</Nav.Link>
-            <NavDropdown title="INDUMENTARIA" id="basic-nav-dropdown" className='categories hvr-underline-from-left'>
-              <NavDropdown.Item href="#action/3.1" className='categories'>HOMBRES</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2" className='categories'>
-                MUJERES
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3" className='categories'>ACCESORIOS</NavDropdown.Item>
+            <Link to="/" className='hvr-underline-from-left nav-link'>INICIO</Link>
+            <Nav.Link className='hvr-underline-from-left'>CONTACTO</Nav.Link>
+            <NavDropdown className='hvr-underline-from-left' title="CATEGORIAS" id="basic-nav-dropdown">
+              {categories.map((category, index) => {
+                return (
+                  <NavDropdown.Item key={index}>
+                    <Link to={`/category/${category.name.toLowerCase().replace(' ', '-')}`}>{category.name}</Link>
+                  </NavDropdown.Item>
+                );
+              })}
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

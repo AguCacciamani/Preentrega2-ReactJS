@@ -1,28 +1,47 @@
 import React, { useEffect } from 'react';
-
-import { height } from '@fortawesome/free-brands-svg-icons/fa42Group';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { CardSubtitle } from 'react-bootstrap';
+
+import { height } from '@fortawesome/free-brands-svg-icons/fa42Group';
+import { getMensShirts, getMensShoes, getSportAccessories, getWomensDresses, getWomensShoes } from '../../services/productsServices';
+
 import CountComponent from '../CountComponent/CountComponent';
 import "./ItemListContainerComponent.css";
-import { deleteProductById, getAllProducts } from '../../services/productsServices';
-import { CardSubtitle } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
 
 const ItemListContainerComponent = ({ greeting }) => {
 
   const [products, setProducts] = React.useState([]);
+  
 
   React.useEffect(() => {
-    getAllProducts()
-      .then((res) => setProducts(res.data.products))
-      .catch((err) => console.log(err))
-  }, []);
+    const fetchProducts = async () => {
+        try {
+            const [mensShirts, mensShoes, sportAccessories, womensDresses, womensShoes] = await Promise.all([
+                getMensShirts(),
+                getMensShoes(),
+                getSportAccessories(),
+                getWomensDresses(),
+                getWomensShoes()
+            ]);
+            const allProducts = [
+                ...mensShirts.data.products,
+                ...mensShoes.data.products,
+                ...sportAccessories.data.products,
+                ...womensDresses.data.products,
+                ...womensShoes.data.products
+            ];
 
-  const deleteProduct = (id) => {
-    deleteProductById(id)
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err));
-  };
+            setProducts(allProducts);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
     <>
@@ -31,23 +50,14 @@ const ItemListContainerComponent = ({ greeting }) => {
         {greeting}
       </div>
       <div className='cardsContainer'>
-        {products.map((products) => {
+        {products.map((product) => {
           return (
-            <Card key={products.id} style={{ width: '18rem' }}>
-              <Card.Img variant="top" src={products.thumbnail} />
+            <Card key={product.id} style={{ width: '18rem' }}>
+              <Card.Img variant="top" src={product.thumbnail} />
               <Card.Body>
-                <Card.Title>{products.title}</Card.Title>
-                <CardSubtitle>
-                  {products.price}
-                </CardSubtitle>
-                <Card.Text>
-                    {products.description}
-                </Card.Text>
-                {products.id === 137 ? (
-                  <Button variant="danger" onClick={() => deleteProduct(products.id)}> Eliminar producto</Button>
-                ) : (
-                  <Button variant='primary'>Ir al detalle</Button>
-                )}
+                <Card.Title>{product.title}</Card.Title>
+                <CardSubtitle>{product.price}</CardSubtitle>
+                <Link to={`/item/${product.id}`}>Ir al detalle</Link>
               </Card.Body>
             </Card>
           );
