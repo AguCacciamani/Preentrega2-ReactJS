@@ -16,38 +16,20 @@ const NavBarComponent = () => {
 
   const [categories, setCategories] = React.useState([]);
 
-  React.useEffect(() => {
-  const fetchCategories = async () => {
-    try {
-      const [mensShirts, mensShoes, sportAccessories, womensDresses, womensShoes] = await Promise.all([
-        getMensShirts(),
-        getMensShoes(),
-        getSportAccessories(),
-        getWomensDresses(),
-        getWomensShoes(),
-      ]);
+  const myCategories = [
+    { name: 'Remeras Hombres', category: 'mens-shirts' },
+    { name: 'Zapatos Hombres', category: 'mens-shoes' },
+    { name: 'Accesorios Deportivos', category: 'sports-accessories' },
+    { name: 'Vestidos de Mujer', category: 'womens-dresses' },
+    { name: 'Zapatos de Mujer', category: 'womens-shoes' },
+  ];
 
-      setCategories([
-        { name: 'Mens Shirts', data: mensShirts.data.products },
-        { name: 'Mens Shoes', data: mensShoes.data.products },
-        { name: 'Sport Accessories', data: sportAccessories.data.products },
-        { name: 'Womens Dresses', data: womensDresses.data.products },
-        { name: 'Womens Shoes', data: womensShoes.data.products },
-      ]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  fetchCategories();
-}, []);
   return (
-    
+
     <Navbar expand="lg" className='navbarStyle' sticky='top'>
       <Container>
         <Link className='navbar-brand' to="/">
-          {/* <img src="/Calis-technics-logo.png" width="80" height="80" alt='logo' className="d-inline-block align-center"/> */}
-            CALI-STORE
+          CALI-STORE
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -55,10 +37,10 @@ const NavBarComponent = () => {
             <Link to="/" className='hvr-underline-from-left nav-link'>INICIO</Link>
             <Nav.Link className='hvr-underline-from-left'>CONTACTO</Nav.Link>
             <NavDropdown className='hvr-underline-from-left' title="CATEGORIAS" id="basic-nav-dropdown">
-              {categories.map((category, index) => {
+              {myCategories.map((category, index) => {
                 return (
                   <NavDropdown.Item key={index}>
-                    <Link to={`/category/${category.name.toLowerCase().replace(' ', '-')}`}>{category.name}</Link>
+                    <Link to={`/category/${category.category}`}>{category.name}</Link>
                   </NavDropdown.Item>
                 );
               })}
