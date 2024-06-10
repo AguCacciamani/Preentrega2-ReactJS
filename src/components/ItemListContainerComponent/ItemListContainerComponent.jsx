@@ -6,7 +6,7 @@ import { CardSubtitle } from 'react-bootstrap';
 import { height } from '@fortawesome/free-brands-svg-icons/fa42Group';
 import { getMensShirts, getMensShoes, getSportAccessories, getWomensDresses, getWomensShoes } from '../../services/productsServices';
 
-import CountComponent from '../CountComponent/CountComponent';
+
 import "./ItemListContainerComponent.css";
 import { Link } from 'react-router-dom';
 
@@ -45,7 +45,7 @@ const ItemListContainerComponent = ({ greeting }) => {
 
   return (
     <>
-      <CountComponent />
+      
       <div className='itemListContainerComponent'>
         {greeting}
       </div>
@@ -56,8 +56,8 @@ const ItemListContainerComponent = ({ greeting }) => {
               <Card.Img variant="top" src={product.thumbnail} />
               <Card.Body>
                 <Card.Title>{product.title}</Card.Title>
-                <CardSubtitle>{product.price}</CardSubtitle>
-                <Link to={`/item/${product.id}`}>Ir al detalle</Link>
+                <CardSubtitle>${product.price}</CardSubtitle>
+                <Link to={`/item/${product.id}`}><button style={{color: 'white', backgroundColor: '#d41c1c'}}>Ir al detalle</button></Link>
               </Card.Body>
             </Card>
           );

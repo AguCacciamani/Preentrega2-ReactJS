@@ -20,18 +20,24 @@ const Category = () => {
       });
   }, [categoryId]);
 
-  return products.map((product) => {
-    return (
-      <Card key={product.id} style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={product.thumbnail} />
-        <Card.Body>
-          <Card.Title>{product.title}</Card.Title>
-          <CardSubtitle>{product.price}</CardSubtitle>
-          <Link to={`/item/${product.id}`}>Ir al detalle</Link>
-        </Card.Body>
-      </Card>
-    );
-  });
+  return (
+    <>
+      <div className='cardsContainer'>
+        {products.map((product) => {
+          return (
+            <Card key={product.id} style={{ width: '18rem' }}>
+              <Card.Img variant="top" src={product.thumbnail} />
+              <Card.Body>
+                <Card.Title>{product.title}</Card.Title>
+                <CardSubtitle>${product.price}</CardSubtitle>
+                <Link to={`/item/${product.id}`}><button style={{color: 'white', backgroundColor: '#d41c1c'}}>Ir al detalle</button></Link>
+              </Card.Body>
+            </Card>
+          );
+        })}
+      </div>
+    </>
+  );
 };
 
 export default Category;
