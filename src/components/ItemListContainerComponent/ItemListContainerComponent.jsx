@@ -46,7 +46,7 @@ const ItemListContainerComponent = ({ greeting }) => {
   return (
     <>
       
-      <div className='itemListContainerComponent'>
+      <div className='greetingComponent'>
         {greeting}
       </div>
       <div className='cardsContainer'>

@@ -1,4 +1,4 @@
-.itemListContainerComponent {
+.greetingComponent {
     color: #d41c1c;
     font-size: 4rem;
     margin: 0 auto;
@@ -22,3 +22,18 @@
 .card {
     margin: 0.62rem;
 }
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 1px solid rgb(212, 212, 212);
+}
+
+ .card-subtitle {
+    margin: 10px 0 !important;
+ }
+
+ .h6 {
+    font-size: 1.6rem !important;
+ }

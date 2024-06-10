@@ -22,9 +22,8 @@ const ItemDetailsContainer = () => {
   }, [itemId]);
 
   return (
- 
     <>
-      <div className="itemDetailContainer" style={{ width: '100vw', marginTop: '1.5rem', marginBottom: '1.5rem', display: "flex", boxSizing: "border-box" }}>
+      <div className="itemDetailContainer" style={{ width: '97vw', margin: '1.5rem auto', display: "flex", backgroundColor: '#737373', border: '1px solid grey', borderRadius: '7px' }}>
         <div
           style={{
             display: "flex",
@@ -59,13 +58,13 @@ const ItemDetailsContainer = () => {
             style={{ width: 350, height: 350 }}
           />
         </div>
-        <div style={{ padding: 10, marginRight: '2rem' }}>
+        <div style={{ padding: 10, border: '2px solid grey', borderRadius: '7px', margin: '0.6rem' }}>
           <h1>{product.title}</h1>
-          <h2>{product.price}</h2>
+          <h2>${product.price}</h2>
           <p style={{paddingRight: '2rem'}}>{product.description}</p>
           <p>Valoracion del producto: {product.rating}/5⭐</p>
           <p>Disponibles: {product.stock}</p>
-          <CountComponent />
+          <CountComponent /> <br />
           <button style={{color: '#fff', backgroundColor: '#d41c1c'}}>Agregar al carrito</button>
         </div>
       </div>

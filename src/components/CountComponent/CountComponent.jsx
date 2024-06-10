@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { Button } from "react-bootstrap";
+import "./CountComponent.css";
 
 const CountComponent = () => {
   const [item, setItem] = React.useState(1);
