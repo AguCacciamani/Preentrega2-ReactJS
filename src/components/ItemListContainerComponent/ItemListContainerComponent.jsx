@@ -1,57 +1,16 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { CardSubtitle } from 'react-bootstrap';
 
-import { height } from '@fortawesome/free-brands-svg-icons/fa42Group';
-import { getMensShirts, getMensShoes, getSportAccessories, getWomensDresses, getWomensShoes } from '../../services/productsServices';
-
-
 import "./ItemListContainerComponent.css";
 import { Link } from 'react-router-dom';
-import LoaderComponent from '../LoaderComponent/LoaderComponent';
 
+const ItemListContainerComponent = ({ products }) => {
 
-const ItemListContainerComponent = ({ greeting }) => {
-
-  const [products, setProducts] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  
-
-  React.useEffect(() => {
-    const fetchProducts = async () => {
-        try {
-            const [mensShirts, mensShoes, sportAccessories, womensDresses, womensShoes] = await Promise.all([
-                getMensShirts(),
-                getMensShoes(),
-                getSportAccessories(),
-                getWomensDresses(),
-                getWomensShoes()
-            ]);
-            const allProducts = [
-                ...mensShirts.data.products,
-                ...mensShoes.data.products,
-                ...sportAccessories.data.products,
-                ...womensDresses.data.products,
-                ...womensShoes.data.products
-            ];
-
-            setProducts(allProducts);
-        } catch (error) {
-            console.error('Error fetching products:', error);
-        } finally {
-          setLoading(false);
-        };
-    };
-
-    fetchProducts();
-  }, []);
-
-  return loading ? <LoaderComponent/> : (
+  return (
     <>
-
-      <div className='greetingComponent'>
-        {greeting}
+      <div >
+        <h1 className='greetingComponent'>Bienvenidos a Cali-Store!</h1>
       </div>
       <div className='cardsContainer'>
         {products.map((product) => {

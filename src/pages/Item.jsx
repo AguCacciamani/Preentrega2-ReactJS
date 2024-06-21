@@ -7,10 +7,10 @@ import LoaderComponent from '../components/LoaderComponent/LoaderComponent'
 
 const Item = () => {
     const { id } = useParams();
-    const {product, loading} = useProductById(id);
+    const {products, loading} = useProductById(id);
   
   
-    return loading ? <LoaderComponent/> : <ItemDetailsContainer product={product} />;
+    return loading ? <LoaderComponent/> : <ItemDetailsContainer product={products} />;
 }
 
 export default Item
