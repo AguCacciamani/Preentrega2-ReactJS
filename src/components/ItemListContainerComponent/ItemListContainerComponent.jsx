@@ -9,11 +9,13 @@ import { getMensShirts, getMensShoes, getSportAccessories, getWomensDresses, get
 
 import "./ItemListContainerComponent.css";
 import { Link } from 'react-router-dom';
+import LoaderComponent from '../LoaderComponent/LoaderComponent';
 
 
 const ItemListContainerComponent = ({ greeting }) => {
 
   const [products, setProducts] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
   
 
   React.useEffect(() => {
@@ -37,15 +39,17 @@ const ItemListContainerComponent = ({ greeting }) => {
             setProducts(allProducts);
         } catch (error) {
             console.error('Error fetching products:', error);
-        }
+        } finally {
+          setLoading(false);
+        };
     };
 
     fetchProducts();
   }, []);
 
-  return (
+  return loading ? <LoaderComponent/> : (
     <>
-      
+
       <div className='greetingComponent'>
         {greeting}
       </div>

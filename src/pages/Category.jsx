@@ -5,10 +5,13 @@ import { getProductsByCategory } from "../services/productsServices";
 import Card from 'react-bootstrap/Card';
 import { CardSubtitle } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import LoaderComponent from "../components/LoaderComponent/LoaderComponent";
+
 
 const Category = () => {
-  const [products, setProducts] = React.useState([])
-  const { categoryId } = useParams()
+  const [products, setProducts] = React.useState([]);
+  const { categoryId } = useParams();
+  const [loading, setLoading] = React.useState(true);
 
   useEffect(() => {
     getProductsByCategory(categoryId)
@@ -17,10 +20,12 @@ const Category = () => {
       })
       .catch((err) => {
         console.error(err);
-      });
+      }).finally (() => {
+        setLoading(false);
+      })
   }, [categoryId]);
 
-  return (
+  return loading ? <LoaderComponent/> : (
     <>
       <div className='cardsContainer'>
         {products.map((product) => {

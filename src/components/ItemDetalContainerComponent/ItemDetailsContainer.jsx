@@ -1,25 +1,23 @@
 import React from "react";
+import { CartContext } from "../../context/CartContext";
 
-import { useParams } from "react-router-dom";
 
-import { getProductById } from "../services/productsServices";
+const ItemDetailsContainer = ({product}) => {
+  
+  const { addToCart, removeFromCart } = React.useContext(CartContext);
+  const [quantity, setQuantity] = React.useState(0);
 
-import CountComponent from "../components/CountComponent/CountComponent";
+  const handleAdd = () => {
+    setQuantity(quantity + 1);
+    addToCart(product, 1);
+  };
 
-import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
-import Carousel from 'react-bootstrap/Carousel';
-
-const ItemDetailsContainer = () => {
-  const [product, setProduct] = React.useState({});
-
-  const { itemId } = useParams();
-
-  React.useEffect(() => {
-    getProductById(itemId)
-      .then((res) => setProduct(res.data))
-      .catch((err) => console.error(err));
-  }, [itemId]);
+  const handleRemove = () => {
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
+      removeFromCart(product, 1);
+    }
+  };
 
   return (
     <>
@@ -51,7 +49,7 @@ const ItemDetailsContainer = () => {
             />
           )}
         </div>
-        <div style={{alignContent: 'center'}}>
+        <div style={{ alignContent: 'center' }}>
           <img
             src={product.thumbnail}
             alt={product.title}
@@ -61,11 +59,15 @@ const ItemDetailsContainer = () => {
         <div style={{ padding: 10, border: '2px solid grey', borderRadius: '7px', margin: '0.6rem' }}>
           <h1>{product.title}</h1>
           <h2>${product.price}</h2>
-          <p style={{paddingRight: '2rem'}}>{product.description}</p>
-          <p>Valoracion del producto: {product.rating}/5⭐</p>
-          <p>Disponibles: {product.stock}</p>
-          <CountComponent /> <br />
-          <button style={{color: '#fff', backgroundColor: '#d41c1c'}}>Agregar al carrito</button>
+          <p style={{ paddingRight: '2rem' }}>{product.description}</p>
+          <p style={{marginBottom:"0.7rem"}}>Valoracion del producto: {product.rating}/5⭐</p>
+          {product.stock < 10 ? (<div style={{color: "black", backgroundColor:"#ff000066", display:"inline", borderRadius: "3px", padding:"3px" }}>Últimas {product.stock} unidades!</div>) : (<div>Stock: {product.stock}</div>)}
+          <div style={{ display: "flex", alignItems:"center" }}>
+            <button className="detailButton" onClick={handleRemove}>-</button>
+            <span>{quantity}</span>
+            <button className="detailButton" onClick={handleAdd}>+</button>
+          </div>
+          <button style={{ color: '#fff', backgroundColor: '#d41c1c' }}>Agregar al carrito</button>
         </div>
       </div>
     </>

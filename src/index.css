@@ -57,8 +57,25 @@ button:focus-visible {
   --bs-body-color: #fff;
 }
 
-.dropdown-item a {
+.detailButton {
+  width: 30px;
+  height: 30px;
+  margin: 5px 5px 5px;
+  background-color: #5f5f5f;
+  border-color: #808080;
   color: #fff;
-  text-decoration: none;
+  padding: 0;
 }
+
+.detailButton:hover {
+  background-color: #242324;
+  border-color: #d41c1c;
+}
+
+.detailButton:active {
+  background-color: #d41c1c;
+  border-color: #971212;
+  transition: background-color 0.1s;
+}
+
 
