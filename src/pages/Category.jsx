@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ItemListContainerComponent from "../components/ItemListContainerComponent/ItemListContainerComponent";
 import { useParams } from "react-router-dom";
 import { useProductsByCategory } from "../hooks/useProductsByCategory";

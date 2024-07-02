@@ -1,7 +1,7 @@
 import React from 'react'
-
 import { Link } from 'react-router-dom';
-import { getMensShirts, getMensShoes, getSportAccessories, getWomensDresses, getWomensShoes } from '../../services/productsServices';
+
+import { useCollectionItems } from '../../hooks/useCollectionItems';
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -14,21 +14,13 @@ import "./NavBarComponent.css";
 
 const NavBarComponent = () => {
 
-  const [categories, setCategories] = React.useState([]);
-
-  const myCategories = [
-    { name: 'Remeras Hombres', category: 'mens-shirts' },
-    { name: 'Zapatos Hombres', category: 'mens-shoes' },
-    { name: 'Accesorios Deportivos', category: 'sports-accessories' },
-    { name: 'Vestidos de Mujer', category: 'womens-dresses' },
-    { name: 'Zapatos de Mujer', category: 'womens-shoes' },
-  ];
+  const {items} = useCollectionItems("categories");
 
   return (
 
     <Navbar expand="lg" className='navbarStyle' sticky='top'>
       <Container>
-        <Link className='navbar-brand' to="/">
+        <Link to="/" className='navbar-brand' >
           CALI-STORE
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -37,10 +29,10 @@ const NavBarComponent = () => {
             <Link to="/" className='hvr-underline-from-left nav-link'>INICIO</Link>
             <Nav.Link className='hvr-underline-from-left'>CONTACTO</Nav.Link>
             <NavDropdown className='hvr-underline-from-left' title="CATEGORIAS" id="basic-nav-dropdown">
-              {myCategories.map((category, index) => {
+              {items.map((categories) => {
                 return (
-                  <NavDropdown.Item key={index}>
-                    <Link to={`/category/${category.category}`}>{category.name}</Link>
+                  <NavDropdown.Item key={categories.slug}>
+                    <Link to={`/category/${categories.slug}`}>{categories.name}</Link>
                   </NavDropdown.Item>
                 );
               })}

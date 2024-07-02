@@ -18,7 +18,7 @@ const ItemDetailsContainer = ({product}) => {
       removeFromCart(product, 1);
     }
   };
-
+ 
   return (
     <>
       <div className="itemDetailContainer" style={{ width: '97vw', margin: '1.5rem auto', display: "flex", backgroundColor: '#737373', border: '1px solid grey', borderRadius: '7px' }}>
@@ -73,5 +73,7 @@ const ItemDetailsContainer = ({product}) => {
     </>
   );
 };
+
+
 
 export default ItemDetailsContainer;

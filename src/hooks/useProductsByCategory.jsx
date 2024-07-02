@@ -1,21 +1,30 @@
 import React from 'react'
-import { getProductsByCategory } from '../services/productsServices'
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
 
 
 export const useProductsByCategory = (category) => {
     const [products, setProducts] = React.useState([]);
 
     React.useEffect(() => {
-        getProductsByCategory(category)
-            .then((res) => {
-                setProducts(res.data.products);
+        const db = getFirestore();
+        const productosCollection = collection(db, "productos");
+        const productsQuery = query(
+            productosCollection,
+            where("category", "==", category)
+        );
+
+        getDocs(productsQuery)
+            .then((snapshot) => {
+                setProducts(
+                    snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+                );
             })
-            .catch((err) => {
-                console.error(err);
-            })
+            .catch((error) => {
+                console.log("Error getting documents: ", error);
+            });
     }, [category]);
-    
-    return {products};
+
+    return { products };
 
 }
 
