@@ -11,16 +11,16 @@ export const useCollectionItems = (collectionName) => {
 
     const productosCollection = collection(db, collectionName);
     getDocs(productosCollection)
-    .then((snapshot) => {
-      setItems(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-      );
-    })
-    .catch((error) => {
-      console.log("Error getting documents: ", error);
-    })
-    .finally(() => {
-      setLoading(false);
-    });
+      .then((snapshot) => {
+        setItems(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+        );
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
 
   }, []);
 

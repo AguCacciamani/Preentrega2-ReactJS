@@ -5,6 +5,7 @@ import Item from '../pages/Item';
 import Category from '../pages/Category';
 import NavBarComponent from '../components/NavBarComponent/NavBarComponent';
 import Cart from "../pages/Cart";
+import Checkout from '../pages/Checkout';
 
 const MainRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const MainRoutes = () => {
             <Route path='/item/:id' element={<Item />} />
             <Route path='/category/:id' element={<Category />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
     </BrowserRouter>

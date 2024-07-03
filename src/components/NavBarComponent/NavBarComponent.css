@@ -13,7 +13,9 @@
     padding: 0;
 }
 
-
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: #D41C1C;
+}
 
 .hvr-underline-from-left {
     color: #fff;

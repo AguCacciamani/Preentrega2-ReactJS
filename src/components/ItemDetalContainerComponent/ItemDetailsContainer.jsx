@@ -57,17 +57,17 @@ const ItemDetailsContainer = ({product}) => {
           />
         </div>
         <div style={{ padding: 10, border: '2px solid grey', borderRadius: '7px', margin: '0.6rem' }}>
-          <h1>{product.title}</h1>
+          <h1 style={{fontSize:"2.5rem"}}>{product.title}</h1>
           <h2>${product.price}</h2>
           <p style={{ paddingRight: '2rem' }}>{product.description}</p>
           <p style={{marginBottom:"0.7rem"}}>Valoracion del producto: {product.rating}/5⭐</p>
           {product.stock < 10 ? (<div style={{color: "black", backgroundColor:"#ff000066", display:"inline", borderRadius: "3px", padding:"3px" }}>Últimas {product.stock} unidades!</div>) : (<div>Stock: {product.stock}</div>)}
+          <p style={{marginTop: "0.7rem", marginBottom: "0"}}>Agregar al carrito:</p>
           <div style={{ display: "flex", alignItems:"center" }}>
             <button className="detailButton" onClick={handleRemove}>-</button>
             <span>{quantity}</span>
             <button className="detailButton" onClick={handleAdd}>+</button>
           </div>
-          <button style={{ color: '#fff', backgroundColor: '#d41c1c' }}>Agregar al carrito</button>
         </div>
       </div>
     </>

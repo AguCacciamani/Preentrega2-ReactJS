@@ -27,12 +27,11 @@ const NavBarComponent = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Link to="/" className='hvr-underline-from-left nav-link'>INICIO</Link>
-            <Nav.Link className='hvr-underline-from-left'>CONTACTO</Nav.Link>
             <NavDropdown className='hvr-underline-from-left' title="CATEGORIAS" id="basic-nav-dropdown">
               {items.map((categories) => {
                 return (
                   <NavDropdown.Item key={categories.slug}>
-                    <Link to={`/category/${categories.slug}`}>{categories.name}</Link>
+                    <Link style={{textDecoration:"none", color:"white"}} to={`/category/${categories.slug}`}>{categories.name}</Link>
                   </NavDropdown.Item>
                 );
               })}

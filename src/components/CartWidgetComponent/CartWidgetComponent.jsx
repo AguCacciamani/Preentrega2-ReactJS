@@ -15,14 +15,14 @@ const CartWidgetComponent = () => {
 
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
-    return (
+  return (
     <div>
       <Link to="/cart" style={{ textDecoration: "none" }}>
         <FontAwesomeIcon icon={faCartShopping} style={customStyles} />
         <span style={customStyles}>{totalItems}</span>
       </Link>
     </div>
-    );
+  );
 }
 
 export default CartWidgetComponent;

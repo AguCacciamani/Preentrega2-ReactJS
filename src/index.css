@@ -1,9 +1,11 @@
+@import 'https://fonts.googleapis.com/css2?family=Alata&display=swap';
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  
+
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,6 +22,7 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-family: "Alata", sans-serif;
 }
 
 button {
@@ -33,9 +36,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
-  border-color: #646cff;
+  border-color: #000;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -78,4 +83,58 @@ button:focus-visible {
   transition: background-color 0.1s;
 }
 
+.input {
+  width: 100%;
+  margin: 10px 0 0 0;
+  background: transparent;
+  border: none;
+  border-bottom: #313131 solid 1px;
+  color: #ffffff;
+  background-image: linear-gradient(to top, #95959586, 30%, transparent);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 0%;
+  transition: background-size 0.2s;
+}
 
+.input:hover {
+  background-size: 100% 100%;
+}
+
+.input:focus {
+  height: 30px;
+  background-image: inherit;
+}
+
+.label {
+  margin-top: 20px;
+}
+
+.comprar {
+  width: 150px;
+  margin: auto;
+  color: #000;
+  background-color: #e8e5e5;
+  height: 40px;
+  font-size: 20px;
+  border: solid 2px #323232;
+  border-radius: 7px;
+  cursor: pointer;
+  --bs-btn-padding-x: 0;
+  --bs-btn-padding-y: 0;
+
+}
+
+.comprar:hover {
+  background-color: #d41c1c;
+  color: #fff;
+  border-color: #323232;
+}
+
+.cards {
+  transition: all .2s;
+}
+
+.cards:hover {
+  transform: translateY(-15px);
+}
