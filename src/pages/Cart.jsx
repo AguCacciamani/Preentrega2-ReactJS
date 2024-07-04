@@ -52,7 +52,9 @@ const Cart = () => {
           <Link to={'/checkout'} style={{ display: "flex", justifyContent: "center", marginBottom: "1rem", textDecoration: "none" }}><Button className="comprar" variant="success">Siguiente</Button></Link>
         </div>
       ) : (
-        <p>Tu carrito está vacío</p>
+        <div style={{display:"flex", alignItems:"center", flexDirection:"column", marginTop:"40px"}}>
+          <img src="https://www.ofientrega.com.mx/assets/images/carritoVacio.png" style={{width:"400px"}}></img>
+        </div>
       )}
     </div>
   );

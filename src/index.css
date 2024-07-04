@@ -60,6 +60,7 @@ button:focus-visible {
   --bs-dropdown-bg: #191919;
   --bs-dropdown-link-hover-bg: #6b6b6b;
   --bs-body-color: #fff;
+  --bs-dropdown-link-active-bg: #D41C1C;
 }
 
 .detailButton {

@@ -2,6 +2,7 @@ import React from 'react'
 import { CartContext } from '../context/CartContext';
 import { Button } from 'react-bootstrap';
 import { collection, getFirestore, addDoc } from "firebase/firestore";
+import Swal from 'sweetalert2';
 
 
 const Checkout = () => {
@@ -37,9 +38,20 @@ const Checkout = () => {
             const db = getFirestore();
             const ordersCollection = collection(db, "orders");
 
-            addDoc(ordersCollection, order).then(({ id }) => console.log(id))
+            addDoc(ordersCollection, order).then(({ id }) => {
+                Swal.fire({
+                    title: "Tu orden de compra se creo con exito!",
+                    text: "Por cualquier consulta podes comunicarte con soporte con el siguiente codigo: " + id,
+                    icon: "success",
+                    confirmButtonText: "Aceptar"
+                  });
+            })
         } else {
-            alert("Por favor complete todos los campos")
+            Swal.fire({
+                title: "Parece que falta información",
+                text: "Por favor, rellena todos los campos",
+                icon: "error"
+              });
         }
     };
 
@@ -64,7 +76,7 @@ const Checkout = () => {
                     <input id="email" name='email' className='input' type="e-mail" onChange={(e) => setEmail(e.target.value)} />
                 </label>
                 <label className='label' for="paymentMethod">
-                    Seleccionatu forma de pago:
+                    Selecciona tu forma de pago:
                     <select style={{ marginLeft: "10px", cursor: "pointer" }} id='paymentMethod' name="paymentMethod">
                         <option value="efectivo">Efectivo</option>
                         <option value="tarjeta">Tarjeta</option>
